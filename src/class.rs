@@ -1,5 +1,6 @@
 use crate::student::Student;
 
+#[derive(Debug, Clone)]
 pub struct Class {
     students: Vec<Student>,
     id: String

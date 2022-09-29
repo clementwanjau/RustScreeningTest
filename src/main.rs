@@ -21,6 +21,8 @@ pub fn main() {
         |student| 
             ethics_class.add_student(student.clone())
     );
+    
+    println!("{:?}", ethics_class);
 }
 
 pub fn set_scores(students: Vec<Student>) {
