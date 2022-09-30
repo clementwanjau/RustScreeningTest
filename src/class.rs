@@ -2,15 +2,15 @@ use crate::student::Student;
 
 #[derive(Debug, Clone)]
 pub struct Class {
+    id: String,
     students: Vec<Student>,
-    id: String
 }
 
 impl Class {
     pub fn new(id: &str)->Self{
         Class {
-            students: Vec::new(),
-            id: id.to_string()
+            id: id.to_string(),
+            students: Vec::new()
         }
     }
     
@@ -42,6 +42,6 @@ impl Iterator for Class {
     }
      */
     fn next(&mut self) -> Option<Self::Item> {
-        self.students.iter().next()
+        self.students.iter().next().map(|x| x.clone())
     }
 }

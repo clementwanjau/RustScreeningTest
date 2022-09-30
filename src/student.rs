@@ -1,4 +1,4 @@
-use chrono::{Date, DateTime, NaiveDate, NaiveDateTime, NaiveTime, Utc};
+use chrono::{Date, NaiveDate, Utc};
 
 
 /*
@@ -25,9 +25,8 @@ impl Student {
      
      */
     pub fn new(name: &str, id: &str, dob: &str) -> Self{
-        let naive_date = DateTime::parse_from_str(dob, "YYYY-mm-dd")
-            .unwrap()
-            .date_naive();
+        
+        let naive_date = NaiveDate::parse_from_str(dob, "%Y-%m-%d").unwrap();
         Student {
             name: name.to_string(),
             id: id.to_string(),
