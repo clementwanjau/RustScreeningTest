@@ -20,13 +20,17 @@ impl Class {
     that they have in descending order. This means that the first 
     student should always be the one with the highest score. 
      */
-    pub fn add_student(&self, student: Student) {
-        todo!()
+    pub fn add_student(&mut self, student: Student) {
+        // Add the student to the list of students.
+        self.students.push(student);
+        // Sort the students in descending order
+        self.students.sort_by(|a, b| b.score.cmp(&a.score));
     }
     
     
 }
 
+// Implementing the Iterator trait on the class
 impl Iterator for Class {
     type Item = Student;
 
@@ -38,6 +42,6 @@ impl Iterator for Class {
     }
      */
     fn next(&mut self) -> Option<Self::Item> {
-        todo!()
+        self.students.iter().next()
     }
 }

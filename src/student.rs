@@ -2,7 +2,8 @@ use chrono::{Date, DateTime, NaiveDate, NaiveDateTime, NaiveTime, Utc};
 
 
 /*
-    Implement the default trait for this object. The default values should be name="{StudentName}", id="StudentId", date_of_birth=1985-01-01, score=0
+    Implement the default trait for this object. 
+    The default values should be name="{StudentName}", id="StudentId", date_of_birth=1985-01-01, score=0
     The usage will be as follows:
     let mut student_a = Student::default();
  */
@@ -11,7 +12,7 @@ pub struct Student {
     name: String,
     id: String,
     date_of_birth: Date<Utc>,
-    score: u32
+    pub score: u32
 }
 
 impl Student {
@@ -24,10 +25,31 @@ impl Student {
      
      */
     pub fn new(name: &str, id: &str, dob: &str) -> Self{
-        todo!()
+        let naive_date = DateTime::parse_from_str(dob, "YYYY-mm-dd")
+            .unwrap()
+            .date_naive();
+        Student {
+            name: name.to_string(),
+            id: id.to_string(),
+            // Result -> OK(), Err()
+            date_of_birth: Date::from_utc(naive_date,Utc),
+            score: 0
+        }
     }
    
     pub fn set_score(&mut self, score: u32) {
         self.score = score;
+    }
+}
+
+impl Default for Student {
+    fn default() -> Self {
+        Student {
+            name: "{StudentName}".to_string(),
+            id: "{StudentId}".to_string(),
+            date_of_birth: Date::from_utc(
+                NaiveDate::from_ymd(1985, 01, 01), Utc),
+            score: 0
+        }
     }
 }
